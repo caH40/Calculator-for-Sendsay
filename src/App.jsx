@@ -6,7 +6,7 @@ import './css/App.css';
 
 const App = () => {
 	const [mode, setMode] = useState('constructor');
-
+	console.log('render app');
 	return (
 		<div className="container">
 			<div className="wrapper">
