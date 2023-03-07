@@ -1,0 +1,28 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 243px;
+	height: 448px;
+	left: 372px;
+	top: 106px;
+	border: 2px dashed #c4c4c4;
+	border-radius: 6px;
+}
+.icon {
+	margin-bottom: 12px;
+}
+.text__main {
+	margin: 0 0 4px 0;
+	line-height: 17px;
+	text-align: center;
+	color: #5d5fef;
+}
+.text__block {
+	max-width: 106px;
+	font-size: 12px;
+	line-height: 15px;
+	text-align: center;
+	color: #6b7280;
+}
