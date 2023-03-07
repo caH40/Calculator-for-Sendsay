@@ -31,7 +31,7 @@
 	border: 1px solid #e2e3e5;
 	border-radius: 5px;
 }
-.box + .active .icon > path {
+.active .icon__path {
 	stroke: #5d5fef;
 }
 .box__right .icon {
