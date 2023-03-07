@@ -1,0 +1,25 @@
+.wrapper {
+	position: absolute;
+	width: 240px;
+	height: 60px;
+	background: #ffffff;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	padding: 4px;
+}
+.scoreboard {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 232px;
+	height: 52px;
+	background: #f3f4f6;
+	border-radius: 6px;
+	padding: 4px 8px;
+}
+.text {
+	font-weight: 800;
+	font-size: 36px;
+	line-height: 44px;
+	color: #111827;
+}
