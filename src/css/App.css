@@ -1,0 +1,23 @@
+html {
+	box-sizing: border-box;
+}
+*,
+*::after,
+*::before {
+	box-sizing: inherit;
+}
+body {
+	font-family: 'Inter', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 15px;
+	color: #000000;
+}
+
+.container {
+	max-width: 1220px;
+	width: 100%;
+	padding: 10px;
+	margin: 0 auto;
+}

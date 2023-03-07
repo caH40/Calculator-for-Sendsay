@@ -1,0 +1,44 @@
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 243px;
+	min-width: 220px;
+	height: 38px;
+	background: #f3f4f6;
+	border-radius: 6px;
+	color: #4d5562;
+	padding: 1px;
+}
+.box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0 5px;
+	height: 100%;
+	padding: 8px 12px;
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-radius: 5px;
+}
+.box__left {
+	flex-basis: 108px;
+}
+.box__right {
+	flex-basis: 133px;
+}
+.active {
+	background: #ffffff;
+	border: 1px solid #e2e3e5;
+	border-radius: 5px;
+}
+.box + .active .icon > path {
+	stroke: #5d5fef;
+}
+.box__right .icon {
+	margin-left: 3px;
+}
+.box:hover {
+	border: 1px solid #5d5fef;
+	transition: all 0.5s;
+}
