@@ -14,10 +14,16 @@ body {
 	line-height: 15px;
 	color: #000000;
 }
-
 .container {
 	max-width: 1220px;
 	width: 100%;
 	padding: 10px;
 	margin: 0 auto;
+}
+.wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 30px 56px;
+	max-width: 540px;
 }
