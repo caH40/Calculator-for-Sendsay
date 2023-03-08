@@ -1,11 +1,11 @@
 import React from 'react';
-import Button from '../UI/Button/Button';
 
+import Button from '../UI/Button/Button';
 import cls from './Numbers.module.css';
 
 const Numbers = () => {
 	return (
-		<div className={cls.wrapper}>
+		<div className={cls.wrapper} draggable={true}>
 			<Button size="medium">7</Button>
 			<Button size="medium">8</Button>
 			<Button size="medium">9</Button>

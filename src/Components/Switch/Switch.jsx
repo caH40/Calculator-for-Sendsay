@@ -5,7 +5,7 @@ import { setMode } from '../../redux/features/modeSlice';
 import cls from './Switch.module.css';
 
 const Switch = () => {
-	const isRuntime = useSelector(state => state.mode.value.isRuntime);
+	const { isRuntime } = useSelector(state => state.mode.value);
 	const dispatch = useDispatch();
 
 	return (
