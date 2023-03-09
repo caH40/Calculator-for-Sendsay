@@ -1,12 +1,11 @@
 .wrapper {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	flex: 0 0 243px;
 	height: 448px;
-	left: 372px;
-	top: 106px;
 	border: 2px dashed #c4c4c4;
 	border-radius: 6px;
 }

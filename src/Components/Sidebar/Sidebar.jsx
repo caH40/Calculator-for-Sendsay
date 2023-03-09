@@ -9,13 +9,15 @@ import cls from './Sidebar.module.css';
 
 const Sidebar = () => {
 	const { isRuntime } = useSelector(state => state.mode.value);
+	const { scoreboard, math, numbers, result } = useSelector(state => state.drag.value);
+
 	return (
 		<>
 			{isRuntime ? (
 				<div className={cls.wrapper} />
 			) : (
 				<div className={cls.wrapper}>
-					<Scoreboard />
+					<Scoreboard locatedOnCanvas={scoreboard.isMounted} />
 					<Math />
 					<Numbers />
 					<Result />
