@@ -19,8 +19,8 @@ const Sidebar = () => {
 				<div className={cls.wrapper}>
 					<Scoreboard locatedOnCanvas={scoreboard.isMounted} />
 					<Math locatedOnCanvas={math.isMounted} />
-					<Numbers />
-					<Result />
+					<Numbers locatedOnCanvas={numbers.isMounted} />
+					<Result locatedOnCanvas={result.isMounted} />
 				</div>
 			)}
 		</>

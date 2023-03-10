@@ -10,3 +10,9 @@
 	border-radius: 4px;
 	padding: 4px;
 }
+.mountedBox {
+	box-shadow: none;
+}
+.notActive {
+	opacity: 0.5;
+}

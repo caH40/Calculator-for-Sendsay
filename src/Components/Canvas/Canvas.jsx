@@ -7,33 +7,38 @@ import {
 	getDoubleClick,
 } from '../../redux/features/dragSlice';
 import Math from '../Math/Math';
+import Numbers from '../Numbers/Numbers';
 import Scoreboard from '../Scoreboard/Scoreboard';
+import Result from '../Result/Result';
 
 import cls from './Canvas.module.css';
 
 const Canvas = () => {
-	const { scoreboard, math, numbers, result, draggedElement, isOverCanvas, positionInsert } =
-		useSelector(state => state.drag.value);
-	const isMountedElements =
-		scoreboard.isMounted || math.isMounted || numbers.isMounted || result.isMounted;
+	const { scoreboard, math, numbers, result, draggedElement, isOverCanvas } = useSelector(
+		state => state.drag.value
+	);
+
 	const dispatch = useDispatch();
 
-	const overClass = () => {
-		if (isOverCanvas && !isMountedElements) return 'box__first';
-		if (isOverCanvas && isMountedElements) return 'box__next';
-		return 'box__none';
-	};
+	const isMountedElements =
+		scoreboard.isMounted || math.isMounted || numbers.isMounted || result.isMounted;
+
+	const overClass = isOverCanvas && !isMountedElements ? 'box__first' : 'box__none';
 
 	const positionForInsert =
 		68 + (math.isMounted ? 64 : 0) + (numbers.isMounted ? 232 : 0) + (result.isMounted ? 80 : 0);
-
+	console.log({ positionForInsert });
 	const styleInsert = () => {
 		if (draggedElement && draggedElement !== 'scoreboard')
 			return { display: 'block', top: `${positionForInsert}px` };
+
 		if (draggedElement && draggedElement === 'scoreboard')
 			return { display: 'block', top: '0px' };
+
 		return { display: 'none' };
 	};
+
+	const borderCanvas = isMountedElements ? 'border__none' : '';
 
 	return (
 		<div
@@ -46,7 +51,7 @@ const Canvas = () => {
 				dispatch(dragOverHandler(e.clientY - 90));
 			}}
 			onDragLeave={() => dispatch(dragLeaveHandler())}
-			className={`${cls.wrapper} ${cls[overClass()]}`}
+			className={`${cls.wrapper} ${cls[overClass]} ${cls[borderCanvas]}`}
 		>
 			{scoreboard.isMounted ? (
 				<Scoreboard
@@ -59,6 +64,20 @@ const Canvas = () => {
 				<Math
 					doubleClick={() => dispatch(getDoubleClick({ math: { isMounted: false } }))}
 					position={math.position}
+				/>
+			) : undefined}
+
+			{numbers.isMounted ? (
+				<Numbers
+					doubleClick={() => dispatch(getDoubleClick({ numbers: { isMounted: false } }))}
+					position={numbers.position}
+				/>
+			) : undefined}
+
+			{result.isMounted ? (
+				<Result
+					doubleClick={() => dispatch(getDoubleClick({ result: { isMounted: false } }))}
+					position={result.position}
 				/>
 			) : undefined}
 
@@ -97,6 +116,7 @@ const Canvas = () => {
 					<div className={cls.text__block}>любой элемент из левой панели</div>
 				</>
 			)}
+
 			<svg
 				className={cls.line__insert}
 				style={styleInsert()}

@@ -28,11 +28,12 @@
 .box__first {
 	background-color: #f0f9ff;
 }
-.box__next {
-}
 .box__none {
 	background-color: #ffffff;
 }
 .line__insert {
 	position: absolute;
+}
+.border__none {
+	border: none;
 }
