@@ -35,11 +35,19 @@ const dragSlice = createSlice({
 
 		dragDropHandler: (state, action) => {
 			let position;
-			if (action.payload.draggedElement === 'scoreboard') position = { top: '0px' };
+			if (action.payload.draggedElement === 'scoreboard') {
+				position = { top: '0px' };
+			} else {
+				position = { top: `${action.payload.position}px` };
+			}
+
 			state.value = {
 				...state.value,
 				isOverCanvas: false,
-				[state.value.draggedElement]: { isMounted: true, position },
+				[state.value.draggedElement]: {
+					isMounted: true,
+					position,
+				},
 			};
 		},
 

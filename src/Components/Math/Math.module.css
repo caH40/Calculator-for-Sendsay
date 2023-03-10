@@ -13,3 +13,9 @@
 	left: 0;
 	top: 72px;
 }
+.mountedBox {
+	box-shadow: none;
+}
+.notActive {
+	opacity: 0.5;
+}

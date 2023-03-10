@@ -25,3 +25,14 @@
 	text-align: center;
 	color: #6b7280;
 }
+.box__first {
+	background-color: #f0f9ff;
+}
+.box__next {
+}
+.box__none {
+	background-color: #ffffff;
+}
+.line__insert {
+	position: absolute;
+}

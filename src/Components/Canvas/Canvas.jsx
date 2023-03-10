@@ -6,36 +6,59 @@ import {
 	dragOverHandler,
 	getDoubleClick,
 } from '../../redux/features/dragSlice';
+import Math from '../Math/Math';
 import Scoreboard from '../Scoreboard/Scoreboard';
 
 import cls from './Canvas.module.css';
 
 const Canvas = () => {
-	const { scoreboard, math, numbers, result, draggedElement, isOverCanvas } = useSelector(
-		state => state.drag.value
-	);
+	const { scoreboard, math, numbers, result, draggedElement, isOverCanvas, positionInsert } =
+		useSelector(state => state.drag.value);
 	const isMountedElements =
 		scoreboard.isMounted || math.isMounted || numbers.isMounted || result.isMounted;
 	const dispatch = useDispatch();
+
+	const overClass = () => {
+		if (isOverCanvas && !isMountedElements) return 'box__first';
+		if (isOverCanvas && isMountedElements) return 'box__next';
+		return 'box__none';
+	};
+
+	const positionForInsert =
+		68 + (math.isMounted ? 64 : 0) + (numbers.isMounted ? 232 : 0) + (result.isMounted ? 80 : 0);
+
+	const styleInsert = () => {
+		if (draggedElement && draggedElement !== 'scoreboard')
+			return { display: 'block', top: `${positionForInsert}px` };
+		if (draggedElement && draggedElement === 'scoreboard')
+			return { display: 'block', top: '0px' };
+		return { display: 'none' };
+	};
 
 	return (
 		<div
 			onDrop={e => {
 				e.preventDefault();
-				dispatch(dragDropHandler({ draggedElement, position: scoreboard.position }));
+				dispatch(dragDropHandler({ draggedElement, position: positionForInsert }));
 			}}
 			onDragOver={e => {
 				e.preventDefault();
 				dispatch(dragOverHandler(e.clientY - 90));
 			}}
 			onDragLeave={() => dispatch(dragLeaveHandler())}
-			className={cls.wrapper}
-			style={{ background: isOverCanvas ? '#F0F9FF' : '#ffffff' }}
+			className={`${cls.wrapper} ${cls[overClass()]}`}
 		>
 			{scoreboard.isMounted ? (
 				<Scoreboard
 					doubleClick={() => dispatch(getDoubleClick({ scoreboard: { isMounted: false } }))}
 					position={scoreboard.position}
+				/>
+			) : undefined}
+
+			{math.isMounted ? (
+				<Math
+					doubleClick={() => dispatch(getDoubleClick({ math: { isMounted: false } }))}
+					position={math.position}
 				/>
 			) : undefined}
 
@@ -74,6 +97,20 @@ const Canvas = () => {
 					<div className={cls.text__block}>любой элемент из левой панели</div>
 				</>
 			)}
+			<svg
+				className={cls.line__insert}
+				style={styleInsert()}
+				width="250"
+				height="6"
+				viewBox="0 0 250 6"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M0.113249 3L3 5.88675L5.88675 3L3 0.113249L0.113249 3ZM249.887 3L247 0.113249L244.113 3L247 5.88675L249.887 3ZM3 3.5H247V2.5H3V3.5Z"
+					fill="#5D5FEF"
+				/>
+			</svg>
 		</div>
 	);
 };
