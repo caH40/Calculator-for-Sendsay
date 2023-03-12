@@ -7,7 +7,7 @@ import cls from './Result.module.css';
 
 const Result = ({ doubleClick, locatedOnCanvas, position }) => {
 	const dispatch = useDispatch();
-	const { result } = useSelector(state => state.drag.value);
+	const { result } = useSelector(state => state.drag);
 	return (
 		<div
 			className={`${cls.wrapper} ${locatedOnCanvas ? cls.notActive : ''} ${
@@ -22,7 +22,7 @@ const Result = ({ doubleClick, locatedOnCanvas, position }) => {
 			}}
 			onDragEnd={() => dispatch(dragEndHandler())}
 			onDoubleClick={doubleClick}
-			style={{ top: position?.top }}
+			style={{ top: position }}
 		>
 			<Button size="big" type="result">
 				=

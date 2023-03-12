@@ -5,6 +5,7 @@ import {
 	dragLeaveHandler,
 	dragOverHandler,
 	getDoubleClick,
+	regroup,
 } from '../../redux/features/dragSlice';
 import Math from '../Math/Math';
 import Numbers from '../Numbers/Numbers';
@@ -14,20 +15,19 @@ import Result from '../Result/Result';
 import cls from './Canvas.module.css';
 
 const Canvas = () => {
+	const { isRuntime } = useSelector(state => state.mode);
 	const { scoreboard, math, numbers, result, draggedElement, isOverCanvas } = useSelector(
-		state => state.drag.value
+		state => state.drag
 	);
 
 	const dispatch = useDispatch();
 
 	const isMountedElements =
 		scoreboard.isMounted || math.isMounted || numbers.isMounted || result.isMounted;
-
 	const overClass = isOverCanvas && !isMountedElements ? 'box__first' : 'box__none';
-
 	const positionForInsert =
 		68 + (math.isMounted ? 64 : 0) + (numbers.isMounted ? 232 : 0) + (result.isMounted ? 80 : 0);
-	console.log({ positionForInsert });
+
 	const styleInsert = () => {
 		if (draggedElement && draggedElement !== 'scoreboard')
 			return { display: 'block', top: `${positionForInsert}px` };
@@ -44,40 +44,64 @@ const Canvas = () => {
 		<div
 			onDrop={e => {
 				e.preventDefault();
-				dispatch(dragDropHandler({ draggedElement, position: positionForInsert }));
+				dispatch(dragDropHandler({ draggedElement, top: positionForInsert }));
 			}}
 			onDragOver={e => {
 				e.preventDefault();
-				dispatch(dragOverHandler(e.clientY - 90));
+				dispatch(dragOverHandler());
 			}}
 			onDragLeave={() => dispatch(dragLeaveHandler())}
 			className={`${cls.wrapper} ${cls[overClass]} ${cls[borderCanvas]}`}
 		>
 			{scoreboard.isMounted ? (
 				<Scoreboard
-					doubleClick={() => dispatch(getDoubleClick({ scoreboard: { isMounted: false } }))}
-					position={scoreboard.position}
+					doubleClick={() => dispatch(getDoubleClick('scoreboard'))}
+					position={scoreboard.top}
 				/>
 			) : undefined}
 
 			{math.isMounted ? (
 				<Math
-					doubleClick={() => dispatch(getDoubleClick({ math: { isMounted: false } }))}
-					position={math.position}
+					doubleClick={() => {
+						dispatch(getDoubleClick('math'));
+						dispatch(
+							regroup([
+								{ name: 'result', top: result.top },
+								{ name: 'numbers', top: numbers.top },
+							])
+						);
+					}}
+					position={math.top}
 				/>
 			) : undefined}
 
 			{numbers.isMounted ? (
 				<Numbers
-					doubleClick={() => dispatch(getDoubleClick({ numbers: { isMounted: false } }))}
-					position={numbers.position}
+					doubleClick={() => {
+						dispatch(getDoubleClick('numbers'));
+						dispatch(
+							regroup([
+								{ name: 'result', top: result.top },
+								{ name: 'math', top: math.top },
+							])
+						);
+					}}
+					position={numbers.top}
 				/>
 			) : undefined}
 
 			{result.isMounted ? (
 				<Result
-					doubleClick={() => dispatch(getDoubleClick({ result: { isMounted: false } }))}
-					position={result.position}
+					doubleClick={() => {
+						dispatch(getDoubleClick('result'));
+						dispatch(
+							regroup([
+								{ name: 'numbers', top: numbers.top },
+								{ name: 'math', top: math.top },
+							])
+						);
+					}}
+					position={result.top}
 				/>
 			) : undefined}
 

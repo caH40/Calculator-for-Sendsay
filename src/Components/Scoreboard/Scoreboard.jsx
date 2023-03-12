@@ -6,7 +6,7 @@ import cls from './Scoreboard.module.css';
 
 const Scoreboard = ({ doubleClick, locatedOnCanvas, position }) => {
 	const dispatch = useDispatch();
-	const { scoreboard } = useSelector(state => state.drag.value);
+	const { scoreboard } = useSelector(state => state.drag);
 
 	return (
 		<div
@@ -15,10 +15,9 @@ const Scoreboard = ({ doubleClick, locatedOnCanvas, position }) => {
 			}`}
 			draggable={!scoreboard.isMounted}
 			onDragStart={e => dispatch(dragStartHandler('scoreboard'))}
-			onDragEnter={e => {}}
 			onDragEnd={() => dispatch(dragEndHandler())}
 			onDoubleClick={doubleClick}
-			style={{ top: position?.top }}
+			style={{ top: position }}
 		>
 			<div className={cls.scoreboard}>
 				<span className={cls.text}>0</span>

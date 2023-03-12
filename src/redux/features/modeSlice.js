@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const modeSlice = createSlice({
 	name: 'mode',
-	initialState: { value: { isRuntime: true } },
+	initialState: { isRuntime: true },
 	reducers: {
 		setMode: (state, action) => {
-			state.value = action.payload;
+			state.isRuntime = action.payload;
 		},
 	},
 });

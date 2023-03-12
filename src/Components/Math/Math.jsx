@@ -7,7 +7,7 @@ import cls from './Math.module.css';
 
 const Math = ({ doubleClick, locatedOnCanvas, position }) => {
 	const dispatch = useDispatch();
-	const { math } = useSelector(state => state.drag.value);
+	const { math } = useSelector(state => state.drag);
 
 	return (
 		<div
@@ -23,7 +23,7 @@ const Math = ({ doubleClick, locatedOnCanvas, position }) => {
 			}}
 			onDragEnd={() => dispatch(dragEndHandler())}
 			onDoubleClick={doubleClick}
-			style={{ top: position?.top }}
+			style={{ top: position }}
 		>
 			<Button>/</Button>
 			<Button>x</Button>

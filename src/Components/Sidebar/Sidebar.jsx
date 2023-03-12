@@ -8,8 +8,8 @@ import Scoreboard from '../Scoreboard/Scoreboard';
 import cls from './Sidebar.module.css';
 
 const Sidebar = () => {
-	const { isRuntime } = useSelector(state => state.mode.value);
-	const { scoreboard, math, numbers, result } = useSelector(state => state.drag.value);
+	const { isRuntime } = useSelector(state => state.mode);
+	const { scoreboard, math, numbers, result } = useSelector(state => state.drag);
 
 	return (
 		<>

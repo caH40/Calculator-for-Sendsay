@@ -7,7 +7,7 @@ import cls from './Numbers.module.css';
 
 const Numbers = ({ doubleClick, locatedOnCanvas, position }) => {
 	const dispatch = useDispatch();
-	const { numbers } = useSelector(state => state.drag.value);
+	const { numbers } = useSelector(state => state.drag);
 	return (
 		<div
 			className={`${cls.wrapper} ${locatedOnCanvas ? cls.notActive : ''} ${
@@ -22,7 +22,7 @@ const Numbers = ({ doubleClick, locatedOnCanvas, position }) => {
 			}}
 			onDragEnd={() => dispatch(dragEndHandler())}
 			onDoubleClick={doubleClick}
-			style={{ top: position?.top }}
+			style={{ top: position }}
 		>
 			<Button size="medium">7</Button>
 			<Button size="medium">8</Button>
