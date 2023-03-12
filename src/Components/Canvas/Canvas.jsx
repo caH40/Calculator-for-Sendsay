@@ -55,7 +55,10 @@ const Canvas = () => {
 		>
 			{scoreboard.isMounted ? (
 				<Scoreboard
-					doubleClick={() => dispatch(getDoubleClick('scoreboard'))}
+					doubleClick={() => {
+						if (isRuntime) return;
+						dispatch(getDoubleClick('scoreboard'));
+					}}
 					position={scoreboard.top}
 				/>
 			) : undefined}
@@ -63,6 +66,7 @@ const Canvas = () => {
 			{math.isMounted ? (
 				<Math
 					doubleClick={() => {
+						if (isRuntime) return;
 						dispatch(getDoubleClick('math'));
 						dispatch(
 							regroup([
@@ -78,6 +82,7 @@ const Canvas = () => {
 			{numbers.isMounted ? (
 				<Numbers
 					doubleClick={() => {
+						if (isRuntime) return;
 						dispatch(getDoubleClick('numbers'));
 						dispatch(
 							regroup([
@@ -93,6 +98,7 @@ const Canvas = () => {
 			{result.isMounted ? (
 				<Result
 					doubleClick={() => {
+						if (isRuntime) return;
 						dispatch(getDoubleClick('result'));
 						dispatch(
 							regroup([
