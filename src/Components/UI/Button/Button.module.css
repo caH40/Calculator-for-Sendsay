@@ -6,6 +6,7 @@
 	border-radius: 6px;
 	text-align: center;
 	cursor: pointer;
+	user-select: none;
 }
 .medium {
 	flex-basis: 72px;

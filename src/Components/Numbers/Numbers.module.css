@@ -14,3 +14,9 @@
 	padding: 4px;
 	text-align: center;
 }
+.mountedBox {
+	box-shadow: none;
+}
+.notActive {
+	opacity: 0.5;
+}

@@ -1,13 +1,18 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMode } from '../../redux/features/modeSlice';
 
 import cls from './Switch.module.css';
 
-const Switch = ({ mode, setMode }) => {
+const Switch = () => {
+	const { isRuntime } = useSelector(state => state.mode);
+	const dispatch = useDispatch();
+
 	return (
 		<div className={cls.wrapper}>
 			<div
-				className={`${cls.box} ${cls.box__left} ${mode === 'runtime' ? cls.active : ''}`}
-				onClick={() => setMode('runtime')}
+				className={`${cls.box} ${cls.box__left} ${isRuntime ? cls.active : ''}`}
+				onClick={() => dispatch(setMode(true))}
 			>
 				<svg
 					className={cls.icon}
@@ -38,8 +43,8 @@ const Switch = ({ mode, setMode }) => {
 			</div>
 
 			<div
-				className={`${cls.box} ${cls.box__right} ${mode === 'constructor' ? cls.active : ''}`}
-				onClick={() => setMode('constructor')}
+				className={`${cls.box} ${cls.box__right} ${!isRuntime ? cls.active : ''}`}
+				onClick={() => dispatch(setMode(false))}
 			>
 				<svg
 					className={cls.icon}

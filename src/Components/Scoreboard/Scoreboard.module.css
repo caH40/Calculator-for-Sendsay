@@ -23,3 +23,9 @@
 	line-height: 44px;
 	color: #111827;
 }
+.mountedBox {
+	box-shadow: none;
+}
+.notActive {
+	opacity: 0.5;
+}

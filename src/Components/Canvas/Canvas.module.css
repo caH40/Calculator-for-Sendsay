@@ -1,12 +1,11 @@
 .wrapper {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	flex: 0 0 243px;
 	height: 448px;
-	left: 372px;
-	top: 106px;
 	border: 2px dashed #c4c4c4;
 	border-radius: 6px;
 }
@@ -25,4 +24,16 @@
 	line-height: 15px;
 	text-align: center;
 	color: #6b7280;
+}
+.box__first {
+	background-color: #f0f9ff;
+}
+.box__none {
+	background-color: #ffffff;
+}
+.line__insert {
+	position: absolute;
+}
+.border__none {
+	border: none;
 }
