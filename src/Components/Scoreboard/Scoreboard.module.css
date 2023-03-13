@@ -16,12 +16,16 @@
 	background: #f3f4f6;
 	border-radius: 6px;
 	padding: 4px 8px;
+	overflow: hidden;
 }
 .text {
 	font-weight: 800;
 	font-size: 36px;
 	line-height: 44px;
 	color: #111827;
+}
+.text__small {
+	font-size: 18px;
 }
 .mountedBox {
 	box-shadow: none;

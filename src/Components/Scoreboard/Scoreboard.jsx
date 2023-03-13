@@ -7,6 +7,16 @@ import cls from './Scoreboard.module.css';
 const Scoreboard = ({ doubleClick, locatedOnCanvas, position }) => {
 	const dispatch = useDispatch();
 	const { scoreboard } = useSelector(state => state.drag);
+	const { firstNumber, secondNumber, mathSign, result, modeText } = useSelector(
+		state => state.calculator
+	);
+
+	const score = () => {
+		if (result !== '') return result;
+		if (mathSign !== '' && secondNumber === '') return mathSign;
+		if (mathSign !== '') return secondNumber;
+		return firstNumber;
+	};
 
 	return (
 		<div
@@ -20,7 +30,7 @@ const Scoreboard = ({ doubleClick, locatedOnCanvas, position }) => {
 			style={{ top: position }}
 		>
 			<div className={cls.scoreboard}>
-				<span className={cls.text}>0</span>
+				<span className={`${cls.text} ${modeText ? cls.text__small : ''}`}>{score()}</span>
 			</div>
 		</div>
 	);
