@@ -1,8 +1,12 @@
 export function formatResult(result) {
 	result = result.toString();
+
 	const resultLength = result.length;
 	if (resultLength > 9 && result.includes('.')) {
-		return Number(result).toFixed(7).replace('.', ',');
+		const indexOfPoint = result.indexOf('.');
+		const roundedNumber = 10 ** (8 - indexOfPoint);
+		const resultRounded = Math.round(result * roundedNumber) / roundedNumber;
+		return resultRounded.toString().slice(0, 9).replace('.', ',');
 	}
 	if (resultLength > 9) {
 		result = result.split('');
