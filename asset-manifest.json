@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Calculator-for-Sendsay/static/css/main.d6bef2bc.css",
+    "main.js": "/Calculator-for-Sendsay/static/js/main.e688234b.js",
+    "index.html": "/Calculator-for-Sendsay/index.html",
+    "main.d6bef2bc.css.map": "/Calculator-for-Sendsay/static/css/main.d6bef2bc.css.map",
+    "main.e688234b.js.map": "/Calculator-for-Sendsay/static/js/main.e688234b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d6bef2bc.css",
+    "static/js/main.e688234b.js"
+  ]
+}
