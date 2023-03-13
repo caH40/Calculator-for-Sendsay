@@ -1,11 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { reset } from '../../redux/features/calculatorSlice';
 import { setMode } from '../../redux/features/modeSlice';
 
 import cls from './Switch.module.css';
 
 const Switch = () => {
 	const { isRuntime } = useSelector(state => state.mode);
+
 	const dispatch = useDispatch();
 
 	return (
@@ -44,7 +46,10 @@ const Switch = () => {
 
 			<div
 				className={`${cls.box} ${cls.box__right} ${!isRuntime ? cls.active : ''}`}
-				onClick={() => dispatch(setMode(false))}
+				onClick={() => {
+					dispatch(reset());
+					dispatch(setMode(false));
+				}}
 			>
 				<svg
 					className={cls.icon}
